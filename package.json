@@ -1,0 +1,25 @@
+{
+  "name": "shoppingmall",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/start"
+  },
+  "dependencies": {
+    "connection": "^1.4.0",
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.4",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "oracledb": "^5.5.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0"
+  }
+}

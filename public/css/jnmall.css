@@ -1,0 +1,9 @@
+/* »ó¼¼º¸±â ÄíÆù */
+.gvCpnWrap:before {content: ''; position: absolute; top: 50%; left:-20px; margin-top: -20px; width: 40px; height: 40px; background-color: #004161; border-radius: 40px;
+}
+.gvCpnWrap:after {content:''; background-color: #004161;}
+.gvCpnWrap_bg {font-weight: bold;padding: 11px; background-color: #004161; overflow:hidden;}
+.gvCpnWrap {color:#333; background-color:#ece2d9; padding: 12px 0; box-sizing:border-box; text-align: center;}
+.gvCpnWrap .-head {padding:0; font-size:13px; letter-spacing:2px; }
+.gvCpnWrap .-body {color:#004161; font-size:22px; padding:10px 40px; line-height:1.3; }
+.gvCpnWrap .-foot {color:#333; letter-spacing:-1px; }

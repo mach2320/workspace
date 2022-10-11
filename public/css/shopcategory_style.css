@@ -1,0 +1,4 @@
+.category-wrap > li{display: inline-block;margin: 0 26px 15px 0;vertical-align: top;}
+.category-wrap > li > a{font-size: 14px;color: #555;padding: 0 0 10px 0px;text-align: center;border-bottom: 2px solid #888;margin-bottom: 15px;display: block;}
+.category-wrap > li .category-wrap li{display: block;margin: 0;}
+.category-wrap > li .category-wrap a{font-size: 12px;color: #888;padding: 0 0 8px 0;margin-bottom: 0;background: none;text-align: left; border-bottom: none;text-align: center;}
