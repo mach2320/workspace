@@ -13,6 +13,7 @@ var insertRouter = require('./routes/admin/insertProduct');
 var loginRouter = require('./routes/login');
 var productRouter = require('./routes/user/product');
 var usersRouter = require('./routes/user/users');
+var homeRouter = require('./routes/admin/home');
 
 
 var app = express();
@@ -48,6 +49,7 @@ app.use('/insertRouter', insertRouter);
 app.use('/login', loginRouter);
 app.use('/product', productRouter);
 app.use('/users', usersRouter);
+app.use('/admin/home', homeRouter);
 
 
 
