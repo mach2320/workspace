@@ -47,22 +47,23 @@ router.get('/', function (req, res, next) {
 // 물건 등록
 router.post('/insert', upload.single('file'), async function (req, res, next) {
     const param = [req.body.productName, req.file.path, req.body.productPrice, req.body.productDetail, req.body.productCount, req.body.productDiv]
-    // console.log(req.file.path);
-    await insertProduct(param)
-    res.send("<script>alert('정상적으로 등록이 완료되었습니다.');location.href='/admin/main'</script>");
+    //console.log(req.file.path);
+    var re = await insertProduct(param);
+    console.log(re)
+    res.send("<script>alert('정상적으로 등록이 완료되었습니다.');location.href='/admin/home'</script>");
 });
 
 //insert
 async function insertProduct(param) {
-    // console.log(param)
+    //console.log(param)
     let connection = await oracledb.getConnection(ORACLE_CONFIG);
     var sql = "INSERT INTO PRODUCT(PRODUCT_ID, PRODUCT_NAME, PRODUCT_IMG, \
               PRODUCT_PRICE, PRODUCT_DETAIL, PRODUCT_COUNT, PRODUCT_DIV, PRODUCT_DATE)\
-               values((SELECT MAX(PRODUCT_ID)+1 FROM PRODUCT), :name, :path, :price, :detail, :count, :div, TO_CHAR(SYSDATE,'yyyy-MM-dd HH:mi:ss')) "
+               values((SELECT NVL(MAX(PRODUCT_ID),0)+1 FROM PRODUCT), :name, :path, :price, :detail, :count, :div, TO_CHAR(SYSDATE,'yyyy-MM-dd HH:mi:ss')) "
     let options = {
         outFormat: oracledb.OUT_FORMAT_OBJECT   // query result format
     };
-    await connection.execute(sql, param, options)
+    await connection.execute(sql, param, options);
 
     await connection.close();
 
