@@ -1,11 +1,11 @@
-
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 const session = require('express-session');
-const oracledb = require('oracledb');
+
+var oracledb = require('oracledb');
 oracledb.autoCommit = true;
 
 var shopRouter = require('./routes/index');
@@ -13,11 +13,11 @@ var insertRouter = require('./routes/admin/insertProduct');
 var loginRouter = require('./routes/login');
 var productRouter = require('./routes/user/product');
 var usersRouter = require('./routes/user/users');
-var homeRouter = require('./routes/admin/home');
-
+var adminHomeRouter = require('./routes/admin/home');
 
 var app = express();
 
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -26,10 +26,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+app.use('/', shopRouter);
+app.use('/admin/insertProduct', insertRouter);
+app.use('/login', loginRouter);
+app.use('/product', productRouter);
+app.use('/users', usersRouter);
+app.use('/admin/home', adminHomeRouter);
 
 
 
 
+// 세션 설정
 app.use( // request를 통해 세션 접근 가능 ex) req.session
   session({
     // key: "loginData",
@@ -44,15 +53,9 @@ app.use( // request를 통해 세션 접근 가능 ex) req.session
   })
 );
 
+
+
 app.use('/', shopRouter);
-app.use('/insertRouter', insertRouter);
-app.use('/login', loginRouter);
-app.use('/product', productRouter);
-app.use('/users', usersRouter);
-app.use('/admin/home', homeRouter);
-
-
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

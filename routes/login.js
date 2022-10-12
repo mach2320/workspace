@@ -21,6 +21,7 @@ router.post('/login', async (req, res) => {
 
     // 이메일, 비밀번호 DB 조회
     result = await selectDatabase(loginEmail, loginPwd);
+    console.log(result);
     try {
         // result == undefined 인경우
         // 조회되는 아이디,비번 x
