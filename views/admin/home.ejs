@@ -120,18 +120,43 @@
         <div class="col-5 text-center">
           <a class="blog-header-logo text-dark" href="./home">농수산물 도매 시장</a>
         </div>
-      </a>
-      <a class="btn btn-sm btn-outline-secondary" href="/public/login.html">Sign in</a>          </div>
-        </header>
+        </a>
+        <!-- Humberger Begin -->
+        <div class="humberger__menu__overlay"></div>
+        <div class="humberger__menu__wrapper">
+          <div class="humberger__menu__cart">
+            <ul>
+              <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+              <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            </ul>
+            <% if (sessionName !=undefined){ %>
+              <div class="header__cart__price">
+                <%=sessionName%>님 <span>환영합니다.</span>
+              </div>
+              <%} else{%>
+                <div class="header__cart__price"> <a>로그인</a></div>
+                <%}%>
+          </div>
+          <div class="humberger__menu__widget">
+            <div class="header__top__right__auth">
+              <% if(sessionEmail==undefined){%>
+                <a href="#"><i class="fa fa-user"></i> Login</a>
+                <%} else{%>
+                  <a href="/logout"><i class="fa fa-user"></i> Logout</a>
+                  <%}%>
+            </div>
+          </div>
+        </div>
+        <!-- Humberger End -->
       </div>
+    </header>
   </div>
-  </header>
 
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
-      <a class="p-2 link-secondary" href="https://getbootstrap.com/docs/5.2/examples/blog/#">World</a>
-      <a class="p-2 link-secondary" href="https://getbootstrap.com/docs/5.2/examples/blog/#">U.S.</a>
-      <a class="p-2 link-secondary" href="https://getbootstrap.com/docs/5.2/examples/blog/#">Technology</a>
+      <a class="p-2 link-secondary" href="/admin/home">Main</a>
+      <a class="p-2 link-secondary" href="https://getbootstrap.com/docs/5.2/examples/blog/#">prodcut</a>
+      <a class="p-2 link-secondary" href="/admin/insertProduct">insertPr   oduct</a>
       <a class="p-2 link-secondary" href="https://getbootstrap.com/docs/5.2/examples/blog/#">Design</a>
       <a class="p-2 link-secondary" href="https://getbootstrap.com/docs/5.2/examples/blog/#">Culture</a>
       <a class="p-2 link-secondary" href="https://getbootstrap.com/docs/5.2/examples/blog/#">Business</a>
@@ -162,26 +187,31 @@
                         <div
                           class="GoodsWrap-23844-TCBOARD_ABS_goods_LIST_index18738 -calc-grp calc categoryin_item_content"
                           id="GoodsWrap-23844-TCBOARD_ABS_goods_LIST_index18738"
-                          grp-idx="23844-TCBOARD_ABS_goods_LIST_index18738" grp-name="(영광군수협) 몸에좋은 굴비 진공굴비 600g/700g"
-                          grp-tax="A" qty-min="1" qty-max="0" dsbl="dsbl">
+                          grp-idx="23844-TCBOARD_ABS_goods_LIST_index18738" grp-tax="A" qty-min="1" qty-max="0"
+                          dsbl="dsbl">
                           <div class="-fdThumb" style="margin-bottom:15px;">
                             <div class="-bdThumbZoom">
                               <div>
                                 <div>
-                                  <div style="border-radius: 11px;overflow: hidden;"><a
-                                      href="kwa-ABS_goods_v-23844-1002001"><img src="../../public/img/사과.jpg" border="0"
-                                        width="800" height="800" alt="(영광군수협) 몸에좋은 굴비 진공굴비 600g/700g"
-                                        class="AB-img-full-w"></a></div>
+                                  <% for (i=0; i < result.length; i++){ %>
+                                    <div style="border-radius: 11px;overflow: hidden;"><a
+                                        href="kwa-ABS_goods_v-23844-1002001"><img
+                                          src="../../<%=result[i].PRODUCT_IMG%>" width="100%"></a></div>
                                 </div>
                               </div>
                             </div>
                           </div>
                           <div class="-fdGoodsPrice">
                             <div>&nbsp;<strong><span id="price_total_23844-TCBOARD_ABS_goods_LIST_index18738"
-                                  class="ABS-sell-price">49,100<span class="money-unit">원</span></span></strong></div>
+                                  class="ABS-sell-price"><a href="#">
+                                    <%=result[i].PRODUCT_PRICE%>
+                                  </a><span class="money-unit">원</span></span></strong></div>
                           </div>
-                          <div class="-fdGoodsName"><a href="kwa-ABS_goods_v-23844-1002001">굴비 진공굴비
-                            </a></div>
+                          <div class="-fdGoodsName"><a href="#">
+                              <%=result[i].PRODUCT_NAME%>
+                            </a>
+                            <%}%>
+                          </div>
                           <div class="-fdGoodsDesc1"></div>
                           <div class="-fdViewIcons" style="padding-top: 5px;"></div>
                           <div>
