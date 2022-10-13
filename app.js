@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
+const expressLayouts = require('express-ejs-layouts');
 
 var oracledb = require('oracledb');
 oracledb.autoCommit = true;
@@ -45,6 +46,11 @@ app.use(function (req, res, next) {
 });
 
 
+// 레이아웃 설정
+app.set('layout', 'layout')
+app.set('layout extractScripts', true);
+app.set('layout extractStyles', true);
+app.use(expressLayouts)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
