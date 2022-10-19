@@ -1,0 +1,166 @@
+<body>
+    </div>
+    <div style="text-align:center;">
+        <span style="line-height: 80px;text-align: center; font-size: 32px; color: #000;">상품 상세 정보</span><br>
+        <span style="font-size:14px;">상품 옵션, 할인혜택, 상품 판매 정보를 꼼꼼히 확인하세요.</span>
+    </div>
+    <div class="ABA-content-box bdGoodsInfoR"
+        style="padding-left: 0;padding-bottom: 5px;border-bottom: 2px solid #666;">
+        <div class="-bdTitleWrap" style="padding-bottom:0;">
+            <div class="-fdDescription"></div>
+        </div>
+    </div>
+    <div class="ABA-wrap-box AB-cr">
+        <div class="ABA-container-box-50p">
+            <div class="ABA-content-box bdGoodsInfoL" style="border:0;">
+                <div class="-bdGoodsThumb"
+                    style="border-bottom-right-radius: 50px;border-bottom-left-radius: 50px;overflow: hidden;">
+                    <script type="text/javascript"></script>
+                    <div class="swiper-container swiper-container-horizontal">
+                        <div class="swiper-wrapper">
+                            <% if(productFile.length !=0){ %>
+                                <div class="swiper-slide swiper-slide-active" style="width: 400px; margin-right: 5px;">
+                                    <img class="product__details__pic__item--large"
+                                        src="../../<%=productFile[0].FILE_ROUTE%>" border="0" style="width:100%;"
+                                        id="big_img" alt="">
+                                </div>
+                                <div class="swiper-slide swiper-slide-active" style="width: 400px; margin-right: 5px;">
+                                    <% for(i=0; i< productFile.length; i++){%>
+                                        <img data-imgbigurl="../../<%=productFile[i].FILE_ROUTE%>"
+                                            src="../../<%=productFile[i].FILE_ROUTE%>" alt="" border="0"
+                                            style="width:100%;" id="big_img">
+                                        <%}%>
+                                </div>
+                                <%} else{%>
+                                    <div class="swiper-slide swiper-slide-active"
+                                        style="width: 400px; margin-right: 5px;">
+                                        <img class="product__details__pic__item--large"
+                                            src="../../<%=productDetail[0].PRODUCT_IMG%>" alt="" border="0"
+                                            style="width:100%;" id="big_img">
+                                    </div>
+                                    <%}%>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-custom"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ABA-container-box-50p">
+            <div class="ABA-content-box bdGoodsInfoR">
+                <div id="mainGoods-TCBOARD_ABS_goods_VIEW_index223950"
+                    grp-idx="23950-TCBOARD_ABS_goods_VIEW_index223950" grp-tax="A" qty-min="1" qty-max="0"
+                    grp-opt-join="" class="-calc-grp calc" ot="S" bp="0" qn=".buy_qty" qp="" qgn=".opt-qp-grp"
+                    qty_pack="1" sum="0" supply="0" tax="0" opt-ok="N">
+                    <div class="-bdGoodsInfo -bdPriceGoods">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th><strong>판매가 </strong></th>
+                                    <td class="-bdPriceGoods"><span class="price_unit">
+                                            <%=productDetail[0].PRODUCT_PRICE%><span class="money-unit">원</span>
+                                        </span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="-bdGoodsInfo" style="padding-bottom:0;border:0;">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>남은 수량 </th>
+                                    <td>
+                                        <%=productDetail[0].PRODUCT_COUNT%>
+                                    </td>
+                                    <div class="product__details__quantity">
+                                        <input type='button' onclick='count("plus")' value='+' />
+                                        <input type='text' id='result' value='0'>
+                                        <input type='button' onclick='count("minus")' value='-' />
+                                    </div>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th>상세 설명 </th>
+                                    <td>
+                                        <%=productDetail[0].PRODUCT_DETAIL%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>배송비</th>
+                                    <td><span class="wrap-deliv"
+                                            data-deliv="{&quot;tCost&quot;:&quot;3000&quot;,&quot;deliv&quot;:&quot;50000:0!0:3000&quot;,&quot;mtd&quot;:&quot;&quot;,&quot;cstset&quot;:&quot;0&quot;,&quot;gmtd&quot;:{&quot;type&quot;:&quot;fix&quot;,&quot;delivbyfix&quot;:&quot;3500&quot;,&quot;delivbysum&quot;:&quot;30000:0!0:2500&quot;,&quot;ugdeliv&quot;:&quot;;U;O;MX;&quot;,&quot;sbgdgrp&quot;:&quot;sbag_goods_seller_id&quot;}}"
+                                            gdeliv="3000" keep="0">3,000원</span><span
+                                            style="color:#999;margin-left:5px;" class="buyOfDeliCharge">(50,000원 이상 구매시
+                                            무료)</span></td>
+                                </tr>
+                                <tr>
+                                    <th>배송기간</th>
+                                    <td>3일 이상 7일 이하</td>
+                                </tr>
+                                <tr>
+                                    <th>원산지</th>
+                                    <td>국내</td>
+                                </tr>
+                                <tr>
+                                    <th>제조사</th>
+                                    <td>녹색한우조합공동사업법인</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <div class="-btnWrap">
+                            <ul class="AB-cr">
+                                <button class="primary-btn" id="addCart"
+                                    onclick="addCart('<%productDetail[0].PRODUCT_ID%>')">장바구니 담기</button>
+                                <button class="primary-btn" onclick="buyProduct()">구매하기</button>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--sql문으로 상품의 총 물건 가격을 계산하고 details.ejs에서 사용한다.-->
+
+        <script>
+
+            function addCart(productId) {
+                var count = document.getElementById('result').value
+                fetch("/user/insertCart", {
+                    mrthos: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        productId: productId,
+                        count: document.getElementById('result').value,
+                    }),
+                })
+                    .then((response) => response.json())
+                    .then(function (data) {
+                        alert('상품이 장바구니에 담겼습니다')
+                    });
+            }
+            //plusBtn, MinusBtn 버튼
+            function count(type) {
+                //결과를 표시할 element
+                const resultElement = document.getElementById('result');
+
+                //현재 계산 된 값
+                let number = resultElement.value;
+
+                //더하기, 빼기
+                if (type === 'plus') {
+                    number = parseInt(number) + 1;
+                } else if (type === 'minus') {
+                    if(parseint(number) = 0){
+                        return 0;
+                    }
+                    number = parseInt(number) - 1;
+                }
+
+                //결과 출력
+                resultElement.value = number;
+            }
+        </script>
