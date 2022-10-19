@@ -4,48 +4,31 @@
             <div class="col-4 pt-1">
                 <a class="link-secondary" href="./home"></a>
             </div>
-            <div class="col-5 text-center">
+            <div class="col-7 text-center">
                 <a class="blog-header-logo text-dark" href="./home">농수산물 도매 시장</a>
             </div>
-            </a>
-            <!-- Humberger Begin -->
-            <div class="humberger__menu__overlay"></div>
-            <div class="humberger__menu__wrapper">
-                <div class="humberger__menu__cart">
+            <div class="col-lg-3">
+                <div class="header__top__right__auth">
+                    <% if(sessionEmail==undefined){%>
+                        <a href="/"><i class="fa fa-user"></i> Login</a>
+                        <%} else{%>
+                            <a href="/logout"><i class="fa fa-user"></i> Logout</a>
+                            <%}%>
+                </div>
+                <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="/user/cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                     </ul>
                     <% if (sessionName !=undefined){ %>
                         <div class="header__cart__price">
                             <%=sessionName%>님 <span>환영합니다.</span>
                         </div>
-                    <%} else{%>
-                        <div class="header__cart__price"> <a>로그인</a></div>
-                    <%}%>
-                </div>
-                <div class="humberger__menu__widget">
-                    <div class="header__top__right__auth">
-                        <% if(sessionEmail==undefined){%>
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
                         <%} else{%>
-                            <a href="/logout"><i class="fa fa-user"></i> Logout</a>
-                        <%}%>
-                    </div>
+                            <div class="header__cart__price"> <a href="">로그인</a></div>
+                            <%}%>
                 </div>
             </div>
-            <!-- Humberger End -->
         </div>
     </header>
-</div>
-
-<div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-between">
-        <a class="p-2 link-secondary" href="/admin/home">Main</a>
-        <a class="p-2 link-secondary" href="https://getbootstrap.com/docs/5.2/examples/blog/#">prodcut</a>
-        <a class="p-2 link-secondary" href="/admin/insertProduct">insertProduct</a>
-        <a class="p-2 link-secondary" href="https://getbootstrap.com/docs/5.2/examples/blog/#">Design</a>
-        <a class="p-2 link-secondary" href="https://getbootstrap.com/docs/5.2/examples/blog/#">Culture</a>
-        <a class="p-2 link-secondary" href="https://getbootstrap.com/docs/5.2/examples/blog/#">Business</a>
-    </nav>
 </div>

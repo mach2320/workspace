@@ -2,10 +2,13 @@ var express = require('express');
 var router = express.Router();
 
 const login = require('./login');
-const product = require('./user/product.js');
-const home = require('./user/home.js');
-const adminHome = require('./admin/home.js');
+const home = require('./admin/home.js');
 const adminInsert = require('./admin/insertProduct.js');
+const cart = require('./user/cart.js');
+const details = require('./user/details.js');
+const insertCart = require('./user/insertCart.js');
+const product = require('./user/product.js');
+
 
 router.use('/', (req,res,next) => {
     if(req.url == '/' || req.url == '/login' || '/user/home') {
@@ -27,12 +30,15 @@ router.use('/', (req,res,next) => {
 router.use('/',login);
 
 // 회원
-router.use('/user/product', product);
-router.use('/user/home', home);
+router.use('/user/details', details);
+router.use('/user/cart', cart);
+router.use('/user/insertCart', insertCart);
+
 
 
 //관리자
-router.use('/admin/home', adminHome);
-router.use('/admin/insertproduct', adminInsert);
+router.use('/admin/home', product);
+router.use('/admin/home', home);
+router.use('/admin/insertProduct', adminInsert);
 
 module.exports = router;

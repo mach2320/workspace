@@ -4,16 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
+
 const expressLayouts = require('express-ejs-layouts');
 
 var oracledb = require('oracledb');
 oracledb.autoCommit = true;
 
 var shopRouter = require('./routes/index');
-var insertRouter = require('./routes/admin/insertProduct');
-var loginRouter = require('./routes/login');
-var productRouter = require('./routes/user/product');
-var adminHomeRouter = require('./routes/admin/home');
+
 
 var app = express();
 
@@ -38,9 +36,11 @@ app.use(function (req, res, next) {
   if (req.session.user) {
     global.sessionName = req.session.user.sessionName;
     global.sessionEmail = req.session.user.sessionEmail;
+    global.sessionId = req.session.user.sessionId;
   } else{
     global.sessionName = undefined;
     global.sessionEmail = undefined;
+    global.sessionId = undefined;
   }
   next();
 });
@@ -62,12 +62,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
-
-app.use('/', shopRouter);
-app.use('/admin/insertProduct', insertRouter);
-app.use('/login', loginRouter);
-app.use('/product', productRouter);
-app.use('/admin/home', adminHomeRouter);
 
 
 app.use('/', shopRouter);

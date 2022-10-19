@@ -53,7 +53,7 @@ router.post('/insert', upload.array('file'), async function (req, res, next) {
     const orgName = req.files.map(data => data.originalname);
     // path[0] - 첫번째 파일 : 대표이미지
     const param = [req.body.productName, path[0], req.body.productPrice, req.body.productDetail, req.body.productCount, req.body.productDiv]
-    await insertProdcut(param)
+    await insertProduct(param)
     //console.log(req.file.path);
     //var re = await insertProduct(param)
     //console.log(re)
@@ -83,7 +83,7 @@ async function insertProduct(param) {
 async function insertFile(param2) {
     let connection = await oracledb.getConnection(ORACLE_CONFIG);
     var sql2 = "INSERT INTO PRODUCTFILE(FILE_ROUTE, FILE_NO, FILE_ORG_NAME,FLIE_TYPE, PRODUCT_ID)\
-                VALUES(:fileRoute, :fileNo, :fileOrgName, :fileType, (select MAX(PRODCUT_ID) FROM PRODUCT))"
+                VALUES(:fileRoute, :fileNo, :fileOrgName, :fileType, (select MAX(PRODUCT_ID) FROM PRODUCT))"
     let options = {
         outFormat: oracledb.OUT_FORMAT_OBJECT
     };

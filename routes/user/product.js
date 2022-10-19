@@ -11,14 +11,10 @@ router.get('/', async function (req, res, next) {
     const searchText = req.query.searchText == undefined ? "" : req.query.searchText;
 
     results = await selectProductList(productDiv, searchText);
-    res.render('user/product', {
+    res.render('admin/home', {
         productList: results,
         productDiv: productDiv
     });
-});
-
-router.get('/detail', function (req, res, next) {
-    res.render('user/productDetail');
 });
 
 //select
@@ -35,8 +31,6 @@ async function selectProductList(productDiv, searchText) {
         sql += " and product_name like :searchText "
         binds.push("'%" + searchText + "%'");
     }
-    console.log(binds)
-    console.log(sql)
     let options = {
         outFormat: oracledb.OUT_FORMAT_OBJECT   // query result format
     };
