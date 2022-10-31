@@ -21,7 +21,6 @@ router.post('/login', async (req, res) => {
 
     // 이메일, 비밀번호 DB 조회
     result = await selectDatabase(loginEmail, loginPwd);
-    console.log(result);
     try {
         // result == undefined 인경우
         // 조회되는 아이디,비번 x
@@ -29,6 +28,7 @@ router.post('/login', async (req, res) => {
             res.send('<script>alert("아이디 또는 비밀번호를 잘못 입력했습니다."); location.href = document.referrer;</script>');
         } else { // 조회되는 유저정보가 있는경우
             const userName = result.USER_NAME;
+            const userId = result.USER_ID;
 
             // 일반회원인지 관리자인지 판단
             if (result.USER_AUTH == '관리자') {
@@ -38,19 +38,21 @@ router.post('/login', async (req, res) => {
                 } else { // 세션 생성
                     req.session.user = {
                         sessionEmail: loginEmail,
-                        sessionName: userName
+                        sessionName: userName,
+                        sessionId: userId
                     };
                     res.redirect('/admin/home');
                 }
             } else if (result.USER_AUTH == '일반회원') {
                 if (req.session.user) {
-                    res.redirect('/user/home'); // 유저 페이지 이동
+                    res.redirect('/admin/home'); // 유저 페이지 이동
                 } else { // 세션 생성
                     req.session.user = {
                         sessionEmail: loginEmail,
-                        sessionName: userName
+                        sessionName: userName,
+                        sessionId: userId
                     };
-                    res.redirect('/user/home');
+                    res.redirect('/admin/home');
                 }
             }
         }
@@ -79,7 +81,7 @@ async function selectDatabase(loginId, loginPwd) {
     try {
         let connection = await oracledb.getConnection(ORACLE_CONFIG);
 
-        let sql = "select user_email, user_name, user_auth from member \
+        let sql = "select user_id, user_email, user_name, user_auth from member \
                     where user_email = :email and user_pwd = :pwd";
         let param = [loginId, loginPwd]; // 조건 값
         let options = {

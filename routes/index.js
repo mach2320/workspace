@@ -8,10 +8,11 @@ const cart = require('./user/cart.js');
 const details = require('./user/details.js');
 const insertCart = require('./user/insertCart.js');
 const product = require('./user/product.js');
+const payment = require('./user/payment.js');
 
 
 router.use('/', (req,res,next) => {
-    if(req.url == '/' || req.url == '/login' || '/user/home') {
+    if(req.url == '/' || req.url == '/login' || '/admin/home') {
         // console.log("세션 검사 하지않는 페이지")
         next();
     } else {                                            // 로그인 페이지 이외의 페이지에 진입하려고 하는 경우
@@ -33,6 +34,7 @@ router.use('/',login);
 router.use('/user/details', details);
 router.use('/user/cart', cart);
 router.use('/user/insertCart', insertCart);
+router.use('/user/payment', payment);
 
 
 

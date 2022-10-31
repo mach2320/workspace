@@ -19,7 +19,7 @@ var app = express();
 app.use( // request를 통해 세션 접근 가능 ex) req.session
   session({
     // key: "loginData",
-    secret: "keyboard cat", // 반드시 필요한 옵션. 세션을 암호화해서 저장함
+    secret: "keyboard cart", // 반드시 필요한 옵션. 세션을 암호화해서 저장함
     resave: false, // 세션 변경되지 않아도 계속 저장됨. 기본값은 true지만 false로 사용 권장
     saveUninitialized: true, // 세션을 초기값이 지정되지 않은 상태에서도 강제로 저장. 모든 방문자에게 고유 식별값 주는 것.
     cookie: {
